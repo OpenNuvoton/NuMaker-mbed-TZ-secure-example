@@ -1,0 +1,16 @@
+{
+    "config": {
+        "tz-start-ns": {
+            "help": "Start address of TrustZone non-secure application"
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "platform.stdio-baud-rate": 9600,
+            "platform.stdio-convert-newlines": true
+        },
+        "NUMAKER_PFM_M2351_S": {
+            "target.device_has_remove": ["SERIAL", "SERIAL_ASYNCH", "SERIAL_FC", "STDIO_MESSAGES"]
+        }
+    }
+}
