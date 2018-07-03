@@ -5,6 +5,7 @@ mbed-os/features/FEATURE_COMMON_PAL/*
 mbed-os/features/FEATURE_UVISOR/*
 mbed-os/features/device_key/*
 mbed-os/features/frameworks/*
+mbed-os/features/lwipstack/*
 mbed-os/features/nanostack/*
 mbed-os/features/net/*
 mbed-os/features/netsocket/*
