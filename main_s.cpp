@@ -32,7 +32,7 @@ int main(void)
     
     printf("NU_TZ_SECURE_FLASH_SIZE: 0x%08x\n", NU_TZ_SECURE_FLASH_SIZE);
     printf("NU_TZ_SECURE_SRAM_SIZE: 0x%08x\n", NU_TZ_SECURE_SRAM_SIZE);
-    printf("NU_TZ_NSC_REGION_BASE: 0x%08x\n", NU_TZ_NSC_REGION_BASE);
+    printf("NU_TZ_NSC_REGION_START: 0x%08x\n", NU_TZ_NSC_REGION_START);
     printf("NU_TZ_NSC_REGION_SIZE: 0x%08x\n", NU_TZ_NSC_REGION_SIZE);
     
     non_secure_call ns_reset_handler;
