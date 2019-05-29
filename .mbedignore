@@ -15,4 +15,4 @@ mbed-os/features/storage/*
 mbed-os/events/*
 mbed-os/features/lorawan/*
 mbed-os/components/*
-mbed-os/usb/*
+mbed-os/drivers/source/usb/*

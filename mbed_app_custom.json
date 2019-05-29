@@ -1,0 +1,23 @@
+{
+    "config": {
+        "tz-start-ns": {
+            "help": "Start address of TrustZone non-secure application"
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "platform.stdio-baud-rate": 115200,
+            "platform.stdio-convert-newlines": true
+        },
+        "NU_PFM_M2351_NPSA_S": {
+            "target.device_has_remove": ["SERIAL", "SERIAL_ASYNCH", "SERIAL_FC", "STDIO_MESSAGES"],
+
+            "target.mbed_rom_start"             : "0x0",
+            "target.mbed_rom_size"              : "0x40000",
+            "target.mbed_ram_start"             : "0x20000000",
+            "target.mbed_ram_size"              : "0x8000",
+            
+            "target.boot-stack-size"            : "0x1000"
+        }
+    }
+}
