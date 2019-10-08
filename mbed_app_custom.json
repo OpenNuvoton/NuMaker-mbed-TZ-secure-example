@@ -6,8 +6,9 @@
     },
     "target_overrides": {
         "*": {
-            "platform.stdio-baud-rate": 115200,
-            "platform.stdio-convert-newlines": true
+            "platform.stdio-baud-rate"          : 115200,
+            "platform.stdio-convert-newlines"   : true,
+            "platform.stdio-buffered-serial"    : false
         },
         "NU_PFM_M2351_NPSA_S": {
             "target.device_has_remove": ["SERIAL", "SERIAL_ASYNCH", "SERIAL_FC", "STDIO_MESSAGES"],
