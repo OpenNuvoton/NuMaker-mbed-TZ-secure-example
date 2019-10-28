@@ -1,0 +1,15 @@
+{
+    "requires": ["bare-metal"],
+    "config": {
+        "tz-start-ns": {
+            "help": "Start address of TrustZone non-secure application"
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "platform.stdio-baud-rate"          : 115200,
+            "platform.stdio-convert-newlines"   : true,
+            "platform.stdio-buffered-serial"    : false
+        }
+    }
+}
