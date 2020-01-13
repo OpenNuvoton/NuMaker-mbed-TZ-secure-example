@@ -1,15 +1,9 @@
 #include <arm_cmse.h>
 #include "mbed.h"
+#include <stdint.h>
 
 #if !defined(DEVICE_SERIAL) || (DEVICE_SERIAL == 0U)
 #define printf(...)
-#endif
-
-/* typedef for non-secure callback functions */
-#if defined(__ICCARM__)
-typedef __cmse_nonsecure_call void (*non_secure_call)(void);
-#else
-typedef void (*non_secure_call) (void) __attribute__((cmse_nonsecure_call));
 #endif
 
 #if defined(MBED_CONF_APP_TZ_START_NS)
@@ -21,6 +15,8 @@ typedef void (*non_secure_call) (void) __attribute__((cmse_nonsecure_call));
 #ifndef TZ_START_NS
 #error("TZ_START_NS not defined")
 #endif
+
+extern "C" void call_ns_reset_handler(uintptr_t ns_reset_handler_addr);
 
 /* Secure main() */
 int main(void)
@@ -35,7 +31,7 @@ int main(void)
     printf("NU_TZ_NSC_REGION_START: 0x%08x\n", NU_TZ_NSC_REGION_START);
     printf("NU_TZ_NSC_REGION_SIZE: 0x%08x\n", NU_TZ_NSC_REGION_SIZE);
     
-    non_secure_call ns_reset_handler;
+    uintptr_t ns_reset_handler_addr;
  
     /* Add user setup code for secure part here*/
     
@@ -48,17 +44,12 @@ int main(void)
 
     printf("Secure main thread \r\n");
     printf("TZ_START_NS: 0x%08x\r\n", TZ_START_NS);
-    
+
     /* Get non-secure Reset handler */
-    ns_reset_handler = (non_secure_call) (*(((uint32_t *) TZ_START_NS) + 1));
-
-    printf("ns_reset_handler (before cmse_nsfptr_create): 0x%x \r\n", ns_reset_handler); 
-    ns_reset_handler = cmse_nsfptr_create(ns_reset_handler); 
-    printf("ns_reset_handler (after cmse_nsfptr_create): 0x%x \r\n", ns_reset_handler); 
-
+    ns_reset_handler_addr = (uintptr_t) (*(((uint32_t *) TZ_START_NS) + 1));
 
     /* Start non-secure state software application */
-    ns_reset_handler();
+    call_ns_reset_handler(ns_reset_handler_addr);
 
     /* Non-secure software does not return, this code is not executed */
     uint32_t count = 0;
