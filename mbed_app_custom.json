@@ -12,7 +12,7 @@
             "platform.stdio-buffered-serial"    : false
         },
         "NU_PFM_M2351_NPSA_S": {
-            "target.device_has_remove": [
+            "target.device_has_add": [
                 "SERIAL", 
                 "SERIAL_ASYNCH",
                 "SERIAL_FC",
