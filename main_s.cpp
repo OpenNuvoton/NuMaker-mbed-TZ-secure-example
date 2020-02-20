@@ -25,16 +25,15 @@ int main(void)
     printf("+---------------------------------------------+\r\n");
     printf("|    Secure code is running ...               |\r\n");
     printf("+---------------------------------------------+\r\n");
-    
-    printf("NU_TZ_SECURE_FLASH_SIZE: 0x%08x\n", NU_TZ_SECURE_FLASH_SIZE);
-    printf("NU_TZ_SECURE_SRAM_SIZE: 0x%08x\n", NU_TZ_SECURE_SRAM_SIZE);
-    printf("NU_TZ_NSC_REGION_START: 0x%08x\n", NU_TZ_NSC_REGION_START);
-    printf("NU_TZ_NSC_REGION_SIZE: 0x%08x\n", NU_TZ_NSC_REGION_SIZE);
-    
+
+    printf("Secure ROM start/size: 0x%08x/0x%08x\n", MBED_ROM_START, MBED_ROM_SIZE);
+    printf("Secure RAM start/size: 0x%08x/0x%08x\n", MBED_RAM_START, MBED_RAM_SIZE);
+    printf("NSC region start/size: 0x%08x/0x%08x\n", NU_TZ_NSC_REGION_START, NU_TZ_NSC_REGION_SIZE);
+
     uintptr_t ns_reset_handler_addr;
- 
+
     /* Add user setup code for secure part here*/
-    
+
     /* Set Non-secure main stack (MSP_NS) */
 #if defined(__ICCARM__)
     asm volatile("MSR     SP_NS, %0" :: "r" (*((uint32_t *)(TZ_START_NS))));
