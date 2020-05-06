@@ -53,7 +53,7 @@ int main(void)
     /* Non-secure software does not return, this code is not executed */
     uint32_t count = 0;
     while (1) {
-        wait(0.5);
+        ThisThread::sleep_for(500);
         printf(" Secure main thread: %d \r\n", count ++);
     }
 }

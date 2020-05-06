@@ -1,5 +1,5 @@
 {
-    "requires": ["bare-metal"],
+    "requires": ["bare-metal", "rtos-api"],
     "config": {
         "tz-start-ns": {
             "help": "Start address of TrustZone non-secure application"
