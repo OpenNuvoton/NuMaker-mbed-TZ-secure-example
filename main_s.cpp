@@ -26,6 +26,8 @@ int main(void)
     printf("|    Secure code is running ...               |\r\n");
     printf("+---------------------------------------------+\r\n");
 
+    printf("TERM CONF: %d/8-N-1\r\n", MBED_CONF_PLATFORM_STDIO_BAUD_RATE);
+
     printf("Secure ROM start/size: 0x%08x/0x%08x\n", MBED_ROM_START, MBED_ROM_SIZE);
     printf("Secure RAM start/size: 0x%08x/0x%08x\n", MBED_RAM_START, MBED_RAM_SIZE);
     printf("NSC region start/size: 0x%08x/0x%08x\n", NU_TZ_NSC_REGION_START, NU_TZ_NSC_REGION_SIZE);
