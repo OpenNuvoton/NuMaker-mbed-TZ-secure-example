@@ -5,6 +5,10 @@
             "help": "Start address of TrustZone non-secure application"
         }
     },
+    "macros": [
+        "MBED_CONF_TZ_PROCESS_STACK_SLOTS=8",
+        "MBED_CONF_TZ_PROCESS_STACK_SIZE=2048"
+    ],
     "target_overrides": {
         "*": {
             "platform.stdio-baud-rate"          : 115200,
