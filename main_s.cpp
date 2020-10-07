@@ -59,3 +59,30 @@ int main(void)
         printf(" Secure main thread: %d \r\n", count ++);
     }
 }
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+__NONSECURE_ENTRY
+float Get_Temperature_S(void)
+{
+    static I2C i2c(I2C_SDA, I2C_SCL);
+    const int addr8bit = 0x48 << 1; // 8bit I2C address, 0x90
+    char cmd[2];
+    cmd[0] = 0x01;
+    cmd[1] = 0x00;
+    i2c.write(addr8bit, cmd, 2);
+    ThisThread::sleep_for(500);
+    cmd[0] = 0x00;
+    i2c.write(addr8bit, cmd, 1);
+    i2c.read(addr8bit, cmd, 2);
+    
+    float tmp = (float((cmd[0] << 8) | cmd[1]) / 256.0);
+    printf("Secure: Temp = %d.%d \r\n", (int)tmp, ((int)(tmp*100))%100);
+    return tmp;
+}
+
+#ifdef __cplusplus
+}
+#endif
