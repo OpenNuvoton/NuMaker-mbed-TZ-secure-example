@@ -67,7 +67,7 @@ extern "C" {
 __NONSECURE_ENTRY
 float Get_Temperature_S(void)
 {
-    static I2C i2c(I2C_SDA, I2C_SCL);
+    I2C i2c(I2C_SDA, I2C_SCL);
     const int addr8bit = 0x48 << 1; // 8bit I2C address, 0x90
     char cmd[2];
     cmd[0] = 0x01;
